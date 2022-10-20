@@ -16,8 +16,8 @@
 
 **Rule 2. 【推荐】通过更清晰的代码来避免注释**
 
-在编写注释前，考虑是否可以通过更好的命名，更清晰的代码结构，更好的函数和变量的抽取，让代码不言自明，此时不需要额外的注释。 
-       
+在编写注释前，考虑是否可以通过更好的命名，更清晰的代码结构，更好的函数和变量的抽取，让代码不言自明，此时不需要额外的注释。
+
 ----
 
 **Rule 3. 【推荐】删除空注释，无意义注释**
@@ -29,10 +29,10 @@
 ```java
 /**
  * put elephant into fridge.
- * 
+ *
  * @param elephant
  * @param fridge
- * @return 
+ * @return
  */
 public void put(Elephant elephant, Fridge fridge);
 ```
@@ -51,51 +51,59 @@ public void put(Elephant elephant, Fridge fridge);
 **Rule 6. 【强制】类、类的公有成员、方法的注释必须使用Javadoc规范，使用/\*\* xxx \*/格式，不得使用`//xxx`方式**
 
 正确的JavaDoc格式可以在IDE中，查看调用方法时，不进入方法即可悬浮提示方法、参数、返回值的意义，提高阅读效率。
-    
+
 ----
 
-**Rule 7. 【推荐】JavaDoc中不要为了HTML格式化而大量使用HTML标签和转义字符** 
+**Rule 7. 【推荐】JavaDoc中不要为了HTML格式化而大量使用HTML标签和转义字符**
 
 如果为了Html版JavaDoc的显示，大量使用`<p\>` `<pre\>`这样的html标签，以及`&lt` `&quot` 这样的html转义字符，严重影响了直接阅读代码时的直观性，而直接阅读代码的几率其实比看Html版的JavaDoc大得多。
-    
+
 另外IDE对JavaDoc的格式化也要求`<p>`之类的标签来换行，可以配置让IDE不对JavaDoc的格式化。
 
 ----
 
-**Rule 8. 【推荐】注释不要为了英文而英文** 
+**Rule 8. 【推荐】注释不要为了英文而英文**
 
 如果没有国际化要求，中文能表达得更清晰时还是用中文。
 
 ----
 
-**Rule 9. 【推荐】TODO标记，清晰说明代办事项和处理人**
+**Rule 9. 【推荐】TODO 标记，清晰说明代办事项和处理人**
+
+“对那些临时的, 短期的解决方案, 或已经够好但仍不完美的代码使用 TODO 注释. ”
 
 清晰描述待修改的事项，保证过几个月后仍然能够清楚要做什么修改。
 
 如果近期会处理的事项，写明处理人。如果远期的，写明提出人。
 
-通过IDE和Sonar的标记扫描，经常清理此类标记，线上故障经常来源于这些标记但未处理的代码。
+通过 IDE 和 Sonar 的标记扫描，经常清理此类标记，线上故障经常来源于这些标记但未处理的代码。
+
+正例：
 
 ```java
-正例：
-//TODO:calvin use xxx to replace yyy.
-
-反例：
-//TODO: refactor it
+// TODO(who): to do what.
+// TODO(who): when to do what.
+// TODO(calvin): use xxx to replace yyy.
 ```
 
+反例：
+
+```java
+// TODO: refactor it
+```
+
+不推荐使用 FIXME 标记。这样，在项目中搜索 TODO 就可以得到完整的 TODO list，而不需要搜索 TODO 和 FIXME。
+
 * [Sonar: Track uses of "TODO" tags](https://rules.sonarsource.com/java/RSPEC-1135)
-* [Sonar: Track uses of "FIXME" tags](https://rules.sonarsource.com/java/RSPEC-1134)
 
 ----
 
 **Rule 10. 【推荐】合理处理注释掉的代码**
 
 如果后续会恢复此段代码，在目标代码上方用`///`说明注释动机，而不是简单的注释掉代码。
-    
+
 如果很大概率不再使用，则直接删除（版本管理工具保存了历史代码）。
 
 * [Sonar: Sections of code should not be "commented out"](https://rules.sonarsource.com/java/RSPEC-125)
 
 ----
-
